@@ -1,13 +1,12 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
+import { metadataWithPWA } from '@/lib/pwa'
 
-const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
+export const metadata: Metadata = metadataWithPWA({
   title: 'Random Exploration | Yuang Wei',
   description: 'Discovering the unknown and pursuing all possibilities.',
-}
+})
 
 export default function RootLayout({
   children,
@@ -16,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>{children}</body>
     </html>
   )
 }
