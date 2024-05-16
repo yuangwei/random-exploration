@@ -5,6 +5,7 @@ type Metadata = {
   title: string;
   created: string;
   description: string;
+  lang: string;
   image?: string;
 };
 
