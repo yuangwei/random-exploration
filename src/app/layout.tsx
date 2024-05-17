@@ -1,9 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import '@/styles/globals.css'
-import Footer from '@/components/footer'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Yuang Wei',
@@ -18,8 +14,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased max-w-2xl mb-40 flex flex-col mx-4 mt-8 lg:mx-auto">
-        {children}
-        <Footer />
+        <main className='w-full'>
+          {children}
+        </main>
+        <footer></footer>
       </body>
     </html>
   )

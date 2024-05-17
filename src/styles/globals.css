@@ -85,9 +85,7 @@ html {
   @apply m-0;
 }
 
-.prose h2,
-h3,
-h4 {
+.prose h2, h3, h4 {
   @apply font-medium tracking-tighter !important;
 }
 
@@ -95,7 +93,7 @@ h4 {
   @apply font-medium;
 }
 
-.prose > p {
+.prose p {
   /* Override removing top margin, causing layout shift */
   margin-top: 1.25em !important;
   margin-bottom: 1.25em !important;

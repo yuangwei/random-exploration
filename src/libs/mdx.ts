@@ -1,11 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 
+
 type Metadata = {
   title: string;
   created: string;
   description: string;
   lang: string;
+  topic: string;
   image?: string;
 };
 
@@ -42,7 +44,7 @@ function extractTweetIds(content: string) {
   return tweetMatches?.map((tweet: string) => tweet?.match(/[0-9]+/g)[0]) || [];
 }
 
-function getMDXData(dir: string) {
+export function getMDXData(dir: string) {
   let mdxFiles = getMDXFiles(dir);
   return mdxFiles.map((file) => {
     let { metadata, content } = readMDXFile(path.join(dir, file));
@@ -55,19 +57,4 @@ function getMDXData(dir: string) {
       content,
     };
   });
-}
-
-export function getPosts() {
-  return getMDXData(path.join(process.cwd(), 'content'));
-}
-
-export function getPostsByYear() {
-  const posts = getPosts(),
-    data = {}
-  for (const post of posts) {
-    const { created } = post.metadata
-    const year = new Date(created).getFullYear()
-    data[year] = data[year] ? data[year].concat(post) : [post]
-  }
-  return data
 }
