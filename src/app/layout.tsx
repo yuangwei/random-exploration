@@ -3,7 +3,7 @@ import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   title: 'Yuang Wei',
-  description: 'Start now',
+  description: 'Full-stack Engineer and Lifelong Learner.',
 }
 
 export default function RootLayout({
