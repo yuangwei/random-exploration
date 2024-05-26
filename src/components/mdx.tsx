@@ -1,34 +1,36 @@
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
 function CustomLink(props) {
   let href = props.href;
-  if (href.startsWith('/')) {
+  if (href.startsWith("/")) {
     return (
       <Link href={href} {...props}>
         {props.children}
       </Link>
     );
   }
-  if (href.startsWith('#')) {
+  if (href.startsWith("#")) {
     return <a {...props} />;
   }
   return <a target="_blank" rel="noopener noreferrer" {...props} />;
 }
-
 
 function slugify(str) {
   return str
     .toString()
     .toLowerCase()
     .trim()
-    .replace(/\s+/g, '-')
-    .replace(/&/g, '-and-')
-    .replace(/[^\w\-]+/g, '')
-    .replace(/\-\-+/g, '-');
+    .replace(/\s+/g, "-")
+    .replace(/&/g, "-and-")
+    .replace(/[^\w\-]+/g, "")
+    .replace(/\-\-+/g, "-");
+}
+
+function RoundedImage(props) {
+  return <Image alt={props.alt} className="rounded-lg" {...props} />;
 }
 
 function createHeading(level) {
@@ -39,10 +41,10 @@ function createHeading(level) {
       `h${level}`,
       { id: slug },
       [
-        React.createElement('a', {
+        React.createElement("a", {
           href: `#${slug}`,
           key: `link-${slug}`,
-          className: 'anchor',
+          className: "anchor",
         }),
       ],
       children
@@ -53,7 +55,8 @@ function createHeading(level) {
 let components = {
   h1: createHeading(1),
   a: CustomLink,
-}
+  Image: RoundedImage,
+};
 
 export default function MDX(props) {
   return (
