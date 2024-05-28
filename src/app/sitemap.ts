@@ -2,6 +2,11 @@ import { getBlogPosts } from '@/libs/posts'
 
 export const baseUrl = 'https://yuangwei.com'
 
+export const baseInfo = {
+  title: 'Yuang Wei',
+  description: ''
+}
+
 export default async function sitemap() {
   let blogs = getBlogPosts().map((post: { slug: string; metadata: { created: string } }) => ({
     url: `${baseUrl}/blog/${post.slug}`,
