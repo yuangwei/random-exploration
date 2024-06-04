@@ -81,7 +81,7 @@ export default function Blog({ params }) {
           }),
         }}
       />
-      <h1 className="title font-semibold text-2xl tracking-tighter">
+      <h1 className="title font-semibold text-3xl tracking-tighter">
         {post.metadata.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
@@ -92,10 +92,6 @@ export default function Blog({ params }) {
       <article className="prose">
         <CustomMDX source={post.content} />
       </article>
-      <section>
-        <div className='h-[1px] w-full bg-slate-100 my-10 mt-20'></div>
-        <RecommandPostList slug={params.slug} />
-      </section>
     </section>
   )
 }

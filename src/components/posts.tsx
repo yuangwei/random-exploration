@@ -14,6 +14,33 @@ export function BlogPosts() {
   return <PostList posts={blogs} />
 }
 
+export function BlogPostByYear() {
+  let blogs = getBlogPosts(),
+    yearsContent = {}
+  if (!blogs.length) {
+    return (
+      <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2 justify-between">
+        Not blog in here.
+      </div>
+    )
+  }
+  for (let i = 0; i < blogs.length; i++) {
+    const year = new Date(blogs[i].metadata.created).getFullYear()
+    yearsContent[year] = yearsContent[year] ? yearsContent[year].concat(blogs[i]) : [blogs[i]]
+  }
+  return (
+    <div>
+      {Object.keys(yearsContent).sort((a, b) => Number(b) - Number(a)).map(year => (
+        <div className='border-b-2 border-gray-50' key={year}>
+          <h3 className='font-semibold text-xl mt-6 mb-3 tracking-tighter'>{year}</h3>
+          <PostList posts={yearsContent[year]} />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+
 export function FeaturePostList() {
   let blogs = getFeaturedBlogPosts()
 
@@ -58,13 +85,13 @@ export function PostList({ posts }) {
       <Link
         key={post.slug}
         className="flex flex-col space-y-1 mb-4"
-        href={`/blog/${post.slug}`}
+        href={`/${post.slug}`}
       >
         <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2 justify-between">
-          <p className="text-neutral-900 dark:text-neutral-100 tracking-tight hover:text-neutral-600">
+          <p className="text-neutral-900 dark:text-neutral-100 tracking-tight hover:text-neutral-600 dark:hover:text-neutral-300">
             {post.metadata.title}
           </p>
-          <p className="text-neutral-600 dark:text-neutral-400 text-sm tabular-nums">
+          <p className="text-neutral-600 dark:text-neutral-300 text-sm tabular-nums">
             {formatDate(post.metadata.created, false)}
           </p>
         </div>
