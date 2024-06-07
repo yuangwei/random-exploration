@@ -5,6 +5,7 @@ type Metadata = {
   title: string
   created: string
   summary: string
+  lang: string
   topic?: string
   featured?: string
   image?: string
